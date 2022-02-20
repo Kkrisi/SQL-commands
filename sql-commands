@@ -23,3 +23,10 @@ DROP DATABASE "adatbázisnév";                                                a
 
 
 EXPLAIN "táblanév";         pl: explain "user";         tábla felépítését láthatjuk
+DROP TABLE "táblanév";      pl: drop table "user";
+
+
+ADD "oszlopnév" "definíció";                  új oszlopot szúr be, a definíció tartalmazza az adattípust és a lehetséges definíciókat is
+ALTER "oszlopnév" SET DEFAULT "érték";        módosítja egy oszlop alapértelmezett értékét
+ALTER "oszlopnév" DROP DEFAULT;               eltávolítja egy oszlop alapértelmezett értékét
+
