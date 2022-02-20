@@ -1,0 +1,25 @@
+SHOW databases;
+CREATE DATABASE IF NOT EXISTS "adatbázisnév";
+USE "adatbázis neve";                           pl: use sargabt;
+CREATE TABLE "alkatrészek";
+SHOW tables,
+SELECT * FROM "tábla neve";                     pl: select * from ugyfelek;
+
+
+CREATE USER "felhasználónév@számítógépnév" IDENTIFIED BY 'jelszó';          pl: create user kristof@mycomputer identified by 'cisco'
+SET PASSWORD FOR "felhasználónév@számítógépnév" = PASSWORD ('jelszó');      pl: set password for kristof@mycomputer = password ('cisco2.0')
+FLUSH PRIVILEGES;                                                           jelszó változtatásnál ezzel kell frissíteni
+
+
+SHOW GRANTS;                                                                                   összes jogosultság megnézése
+GRANT "jogosultság" ON "táblanév" TO "felhasználónév@számítógépnév" IDENTIFIED BY 'jelszó';    pl: grant select on esernyők to phpfelhasználó@localhost identified by 'A41!14a!';
+FLUSH PRIVILEGES;
+
+
+REVOKE "jogosultság" ON "táblanév" FROM "felhasználónév@számítógépnév";      pl: REVOKE alter ON esernyők FROM janos123@janoshost;
+REVOKE all ON *.* FROM "felhasználónév@számítógépnév";                      pl: REVOKE all ON *.* FROM vector@vectorcomputer;       minden jogosultsag visszavonása egy fióktól;
+DROP USER "felhasználónév@számítógépnév";                                    pl: DROP USER lajos123@lajoskingdom;       fiók törlése
+DROP DATABASE "adatbázisnév";                                                adatbázis törlése
+
+
+EXPLAIN "táblanév";         pl: explain "user";         tábla felépítését láthatjuk
