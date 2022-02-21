@@ -30,3 +30,61 @@ ADD "oszlopnév" "definíció";                  új oszlopot szúr be, a defin�
 ALTER "oszlopnév" SET DEFAULT "érték";        módosítja egy oszlop alapértelmezett értékét
 ALTER "oszlopnév" DROP DEFAULT;               eltávolítja egy oszlop alapértelmezett értékét
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+create database pata;
+use pata;
+
+create table kerekparok (
+	az int not null primary key auto_increment,
+	szin varchar(50),
+	marka varchar(50),
+	ar double,
+	kategoriaId int
+);
+
+creat table kategoriak (
+	az int not null primary key auto_increment,
+	nev varchar(50)
+);
+
+insert into kategoriak
+(nev)
+values
+('városi'),
+('országúti'),
+('gyerek'),
+('elektromos'),
+('trekking');
+
+insert into kerekparok
+(szin, marka, ar, kategoriaId)
+values
+('fehér', 'Csepel', 178900, 5),
+('szürke', 'Neuzer', 172900, 5),
+('fehér', 'KTM', 256850, 5);
+
+
+
+Táblák összekapcsolása
+
+select szin, marka, ar, nev
+from kerekparok inner join kategoriak
+
+select * from kategoriak;
