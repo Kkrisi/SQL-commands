@@ -88,3 +88,44 @@ select szin, marka, ar, nev
 from kerekparok inner join kategoriak
 
 select * from kategoriak;
+
+
+
+select szin, marka, ar, nev
+from kerekparok inner join kategoriak
+on kerekparok.kategoriaId = kategoriak.az;
+
+
+
+select kerekparok.az, szin, marka, ar, nev
+from kerekparok inner join kategoriak
+on kerekparok.kategoriaId = kategoriak.az;
+
+
+update kerekparok
+set ar = 560900
+where az = 2; 
+
+
+
+
+
+
+vasarlasok=(az, kerekparAz, ugyfelAz, datum)
+ugyfelek=(az, nev)
+
+
+mysqldump pata > pata.sqly
+apt install smbclient
+
+
+
+
+
+
+
+
+
+
+
+
