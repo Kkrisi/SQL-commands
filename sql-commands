@@ -124,8 +124,129 @@ apt install smbclient
 
 
 
+2022-02-28
+Linuxon:
+apt update
+apt install mariadb-server
+mysql
+mysql zoldzrt < /home...zoldzrt.sql      belerakjuk a zoldzrt adatbazisba a swl fajlt
+collate utf8_hunagrian_ci; 			magyar sorrendbe állítja az abc-t 
+
+winSCP.exe         winSCP segítségével töltünk fel fájlokat linuxra, windowsos gépekről
+ER-modell, 2 táblás lekérdezés
 
 
 
 
 
+
+
+
+
+
+
+-- Kádár Kristóf, 2022-02-28
+-- Beszúrás a zöld zrt adatbázisába
+
+insert into szemelyek
+(nev, fizetes, telepules, jutalom, lakcim, beosztasAz)
+values
+("Lakos Kázmér", 2830000, "Miskolc", 800000, "Pata u. 18.", 2);
+
+
+
+
+
+
+insert into beosztasok
+(nev, leiras)
+values
+("kacsász", "");
+
+update szemelyek
+set
+nev="Gipsz Jakab",
+anyja_neve="Purhab Mária",
+telepules="Bugyi",
+lakcim="Cég utca 12",
+fizetes=2121000,
+szuletes="1996-03-12",
+jutalom=500,
+beosztasAz=6
+where az=13112;
+
+
+
+
+
+
+
+
+
+
+
+
+Reláció sémák:
+
+szemelyek(az, nev, anyja_neve, telepules,
+ lakcim, fizetes, szuletes, jutalom, beosztasAz)
+beosztasok(az, nev, leiras)
+
+Kódba:
+
+create table beosztasok(
+ az int not null primary key auto_increment,
+ nev varchar(50),
+ leiras text
+ );
+
+
+
+Két táblás gyakorlás:
+
+--Jelenítsük meg a móri dolgozók nevét és beosztását.
+
+select szemelyek.nev, beosztasok.nev
+from szemelyek inner join beosztasok
+on szemelyek.beosztasAz = beosztasok.az
+where telepules="Mór";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Unique
+
+create database kontjarmu
+character set utf8
+collate utf8_hungarian_ci;
+
+use kontjarmu;
+
+create table jarmuvek (
+	az int not null primary key,
+	rendszam varchar(10) unique,
+	marka varchar(50)
+	);
+
+insert into jarmuvek
+(az, rendszam, marka)
+values
+(1, "ABC-123", "Opel");
+
+
+insert into jarmuvek
+(az, rendszam, marka)
+values
+(2, "ABC-123", "Opel");
