@@ -250,3 +250,171 @@ insert into jarmuvek
 (az, rendszam, marka)
 values
 (2, "ABC-123", "Opel");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL:
+
+@echo off
+C:\xampp\mysql\bin\mysql -u root
+pause
+
+
+show databases;
+create database sargabt;
+use sargabt;
+show tables;
+
+create table ugyfelek(
+	az int not null
+	primary key
+	auto_increment
+	nev varchar(50)
+);
+
+("ugyfelek" tábla mezőit megnézni) desc ugyfelek;
+
+(sorok beszúrása):
+insert into ugyfelek
+(nev, telepules, fizetes, beosztasAz)
+values
+("Tenger Zoltan", "Szeged", 283000, 5);
+
+
+---A dolgozok nevei és fizetesek devecserrol
+select nev as Név, fizetes as Fizetés	---nev és fizetes mezőből valasztunk
+from szemelyek                       ---szemlyeke táblábol választunk
+where telepules="Devecser";
+
+
+---Hany dolgozo van devecserrol?
+select(*)
+from szemelyek
+where telepules="Devecser";
+
+
+
+---devecseriek osszes fizetese
+select sum(fizetes)
+as "Devecseri fizetesek osszesen"
+from szemelyek
+where telepules="Devecser";
+
+
+
+----devecseri atlag fizetes
+select avg(fizetes)
+as "Devecseri dolgozok atlag fizetese"
+from szemelyek
+where telepules="Devecser";
+
+
+
+---2 telepules kivalasztasa es egy adott fizetes alatti dolgozok
+select nev, fizetes, telepules
+from szemelyek
+where (telepules="Miskolc" or telepules="Hatvan")
+and fizetes > 300000;
+
+
+
+---Mikolci dolgozok nevei es fizetesuk, fizetes szerint csokkeno sorrendbe
+select nev, fizetes
+from szemelyek
+where telpules="Miskolc"
+order by fizetes desc;
+
+
+---Milyen telepulesekro lvannak dolgozok, akiknek a fizetesuk tobb mint 400k?
+---telepulesek abc sorrendbe
+select telepules
+from szemelyek
+where fizetes > 400k
+group by telepules;
+
+
+Adatok változtatása már meglevő adattal:
+
+
+---A szolnoki dolgozok fizeteset megvaltoztatjuk 1500k-ra
+update szemelyek
+set
+fizetes=1500k
+where telepules="Szolnok";
+
+
+
+---a nagykorosiek fizetese, ha kevesebb mint 100k akkor legyen 1800k
+update szemelyek
+set
+fizetes=1800k
+where telepules="Nagykoros"
+and
+fizetes < 100k;
+
+
+
+---Milyen telepulesekrol vannak dolgozok
+select telepules
+from szemelyek
+where fizetes < 30k
+group by telepules
+order by telepules
+
+
+
+
+---Fizetesemeles
+update szemelyek
+set
+fizetes = fizetes + 500k
+where fizetes < 20k;
+
+
+
+---Dolgozok akik fizetese 300k alatt van es "p" betus telepulesen lakank
+select telepules, sum(fizetes)
+from szemelyek
+where
+fizetes < 300k
+and
+telepules like "P%"
+group by telepules
+order by telepules;
+
+
+
+---Az elso tiz ember akiknek 30k alatt van a fizetese
+select telepules
+from szemelyek
+where
+fizetes < 30k
+order by telepules
+limit 10;
+
+
+
+
+---Megszabas de csak ott ahol (having) ..
+select telepules, sum(fizetes)
+from szemelyek
+where
+fizetes >800k
+group by telepules
+having
+sum(fizetes)<2000k;
