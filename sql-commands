@@ -30,6 +30,23 @@ ADD "oszlopnév" "definíció";                  új oszlopot szúr be, a defin�
 ALTER "oszlopnév" SET DEFAULT "érték";        módosítja egy oszlop alapértelmezett értékét
 ALTER "oszlopnév" DROP DEFAULT;               eltávolítja egy oszlop alapértelmezett értékét
 
+(CHAR,	VARCHAR(),	TEXT,	INT(),	BIGINT,	DECIMAL(,),	DATE,	TIME,	DATETIME,	ENUM(,),	SERIAL)
+
+
+ALTER "oszlopnév" DROP DEFAULT			eltávolítja egy oszlop alapértelmezett értékét
+CHANGE "oszlopnév" "újoszlopnév"		módosítja az oszlop nevét
+DROP "szolopnév"				töröl egy oszlopot
+MODIFY "oszlopnév" "deifiníció"			módosítja az oszlop definícióját
+RENAME "újtáblanév"				átnevezi a táblát
+
+
+INSERT INTO "táblanév" (...)			adat beszúrás
+SELECT COUNT(*) FROM "táblanév"			megszámolja a rekordokat
+
+
+ORDER BY "oszlopnév"
+ORDER BY DESC "oszlopnév"
+GROUP BY "oszlopnév"
 
 
 
