@@ -106,31 +106,20 @@ from kerekparok inner join kategoriak
 
 select * from kategoriak;
 
-
-
 select szin, marka, ar, nev
 from kerekparok inner join kategoriak
 on kerekparok.kategoriaId = kategoriak.az;
-
-
 
 select kerekparok.az, szin, marka, ar, nev
 from kerekparok inner join kategoriak
 on kerekparok.kategoriaId = kategoriak.az;
 
-
 update kerekparok
 set ar = 560900
 where az = 2; 
 
-
-
-
-
-
 vasarlasok=(az, kerekparAz, ugyfelAz, datum)
 ugyfelek=(az, nev)
-
 
 mysqldump pata > pata.sqly
 apt install smbclient
@@ -170,11 +159,6 @@ insert into szemelyek
 values
 ("Lakos Kázmér", 2830000, "Miskolc", 800000, "Pata u. 18.", 2);
 
-
-
-
-
-
 insert into beosztasok
 (nev, leiras)
 values
@@ -191,15 +175,6 @@ szuletes="1996-03-12",
 jutalom=500,
 beosztasAz=6
 where az=13112;
-
-
-
-
-
-
-
-
-
 
 
 
@@ -262,7 +237,6 @@ insert into jarmuvek
 values
 (1, "ABC-123", "Opel");
 
-
 insert into jarmuvek
 (az, rendszam, marka)
 values
@@ -290,7 +264,6 @@ SQL:
 @echo off
 C:\xampp\mysql\bin\mysql -u root
 pause
-
 
 show databases;
 create database sargabt;
@@ -325,13 +298,11 @@ from szemelyek
 where telepules="Devecser";
 
 
-
 ---devecseriek osszes fizetese
 select sum(fizetes)
 as "Devecseri fizetesek osszesen"
 from szemelyek
 where telepules="Devecser";
-
 
 
 ----devecseri atlag fizetes
@@ -341,13 +312,11 @@ from szemelyek
 where telepules="Devecser";
 
 
-
 ---2 telepules kivalasztasa es egy adott fizetes alatti dolgozok
 select nev, fizetes, telepules
 from szemelyek
 where (telepules="Miskolc" or telepules="Hatvan")
 and fizetes > 300000;
-
 
 
 ---Mikolci dolgozok nevei es fizetesuk, fizetes szerint csokkeno sorrendbe
@@ -385,7 +354,6 @@ and
 fizetes < 100k;
 
 
-
 ---Milyen telepulesekrol vannak dolgozok
 select telepules
 from szemelyek
@@ -394,14 +362,11 @@ group by telepules
 order by telepules
 
 
-
-
 ---Fizetesemeles
 update szemelyek
 set
 fizetes = fizetes + 500k
 where fizetes < 20k;
-
 
 
 ---Dolgozok akik fizetese 300k alatt van es "p" betus telepulesen lakank
@@ -415,7 +380,6 @@ group by telepules
 order by telepules;
 
 
-
 ---Az elso tiz ember akiknek 30k alatt van a fizetese
 select telepules
 from szemelyek
@@ -423,8 +387,6 @@ where
 fizetes < 30k
 order by telepules
 limit 10;
-
-
 
 
 ---Megszabas de csak ott ahol (having) ..
