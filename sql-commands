@@ -397,3 +397,25 @@ fizetes >800k
 group by telepules
 having
 sum(fizetes)<2000k;
+
+
+
+
+
+
+
+
+2022-03-08  (linuxon)
+
+grant all privileges
+on feherbt.*
+to feherbtlocalhost
+identified by 'titok';
+
+quit
+
+mariadb -u feherbt -p
+
+create database feherbt
+character set utf8
+collate utf8_hungarian_ci;
