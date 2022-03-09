@@ -419,3 +419,127 @@ mariadb -u feherbt -p
 create database feherbt
 character set utf8
 collate utf8_hungarian_ci;
+
+
+
+
+
+
+
+2022-03-09
+
+CREATE INDEX "indexnév" ON "táblanév" (...)
+
+create database domosbt 
+character set utf8 
+collate utf8_hungarian_ci;
+ 
+grant all privileges 
+on domosbt.* 
+to domosbt@localhost
+identified by 'titok';
+ 
+use domosbt;
+ 
+create table dolgozok(
+    az int not null primary key auto_increment,
+    nev varchar(50),
+    telepules varchar(50),
+    fizetes double,
+    jutalom double,
+    belepes date
+);
+ 
+insert into dolgozok 
+(nev, telepules, fizetes, jutalom, belepes)
+values
+('Prank Attila', 'Szeged', 2875000, 112000, '2000-01-01'),
+('Lant Erzsébet', 'Szolnok', 2942000, 50000, '2000-02-01');
+
+show tables;
+
+desc dolgozok;
+
+show indexes from dolgozok\G
+
+CREATE INDEX fizetes_index ON dolgozok(fizetes);
+
+--index törlése
+drop index fizetes_index on dolgozok;
+
+create database fer 
+character set utf8 
+collate utf8_hungarian_ci;
+ 
+grant all privileges 
+on fer.* 
+to fer@localhost
+identified by 'titok';
+ 
+use fer;
+ 
+create table dolgozok(
+    az int not null primary key,
+    nev varchar(50),
+    telepules varchar(50),
+    fizetes double
+);
+ 
+insert into dolgozok
+values
+(1,'Pardon Béla','Szolnok',2837000),
+(2,'Lovas Beáta','Szeged',870500),
+(3,'Pedro Péter','Szolnok',2837000),
+(4,'Ton Irén','Szeged',2837000),
+(5,'Frank Olivér','Szolnok',2837000),
+(6,'Lapos Bence','Miskolc',2837000),
+(7,'Kerek Katalin','Miskolc',1870000),
+(8,'Pardon Béla','Hatvan',1537000),
+(9,'Pardon Béla','Szeged',1400000);
+
+select * from dolgozok;
+
+explain select * from dolgozok;
+
+explain select * from dolgozok\G
+
+create index telepules_index on dolgozok(telepules);
+
+EXPLAIN select * from dolgozok where telepules="szeged"\G
+
+create index fizetes_index on dolgozok(fizetes);
+
+EXPLAIN select * from dolgozok where telepules="szeged"\G
+
+select fizetes from dolgozok;
+
+select max(fizetes) from dolgozok;
+
+select min(fizetes) from dolgozok;
+
+select fizetes from dolgozok ordery by fizetes asc;
+
+select fizetes from dolgozok ordery by fizetes asc limit 1;
+
+select fizetes from dolgozok ordery by fizetes desc limit 1;
+
+update dolgozok set nev="Pardon Imre" where az=1;
+
+select nev, fizetes from dolgozok order by fizetes asc limit 1;
+
+
+Jelenítsuk meg hogy van e szolnoki zalaegerszeegi es hatvani dolgozokat
+select nev, telepules from dolgozok where telepules in ("Szolnok", "Zalaegerszeg", "Hatvan");
+
+Jelenítse meg azoknak a dolgozoknak a neveit akinek a fizetese tobb mint 2 millio es szolnokon vagy szegeden laknak
+select nev, fizetes from dolgozok where fizetes > 2000000 and telepules in ("Szolnok", "Szeged");
+
+insert into dolgozok (nev, telepules, fizetes, az) values ("Csoport Árpád", null, 1500000, 10);
+insert into dolgozok (nev, telepules, fizetes, az) values ("Alapos Ferebc", Szeged, null, 11);
+
+select * from dolgozok;
+
+Irassa ki annak a dolgoonak az adatatit akinek ninc smegadva telepules.
+select * from dolgozok where telepules is null;
+
+insert into dolgozok (nev, telepules, fizetes, az) values ("Alapos Ferebc", "Szeged", null, 11);
