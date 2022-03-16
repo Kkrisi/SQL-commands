@@ -542,4 +542,73 @@ select * from dolgozok;
 Irassa ki annak a dolgoonak az adatatit akinek ninc smegadva telepules.
 select * from dolgozok where telepules is null;
 
-insert into dolgozok (nev, telepules, fizetes, az) values ("Alapos Ferebc", "Szeged", null, 11);
+insert into dolgozok (nev, telepules, fizetes, az) values ("Alapos Ferebc", "Szeged", null, 11)
+
+
+
+
+
+
+========================================
+2022-03-16
+========================================
+(Ahol a település ismert, csak azt szeretnénk megjeleníteni)
+select * from dolgozok
+where telepules is not null;
+
+
+
+fer adatbázis
+
+(elenítsen meg minden dolgozot, akinek a fizetése nagyobb mint 2 millio es nem szolnokon laknak)
+select nev, telepules, fizetes
+from dolgozok
+where
+fizetes>2000000
+and telepules != "Szolnok";                     = and telepules <> "Szolnok";
+
+
+(jelenitse meg azokat a dolgozokat akiknek nincs beallitva  fizetese)
+select * 
+from dolgozok 
+where 
+fizetes is null;
+
+
+(jeelnitse meg azokat a dolgozokat akiknek se fzetese se teelpulese nincs beallitva)
+insert into dolgozok
+(az, nev)
+values
+(12,"Pontos Ádám"),
+(13,"Rejtő Jenő"),
+(14,"Almás Péter");
+
+
+(vegyen fel uj oszlopot a dolgozok tablaba)
+alter table dolgozok add telefon varchar(20);
+
+
+(vegye fel az 1-s dolgozonak a kovetkezo telefonszamot: 83 824-3432)
+update dolgozok
+set telefon = "83 824-3432"
+where az = 1
+
+
+replace() függvény
+
+select nev, replace(telefon, ' ', '/ ') telefon from dolgozok;
+
+
+
+substring() FÜGGVÉNY
+
+select substring()
+
+select nev, concat("(",telefon)
+from dolgozok;
+
+
+
+select nev, replace(concat("(",telefon), ' ', ') ' )
+from dolgozok;
+
