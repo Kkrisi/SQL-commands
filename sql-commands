@@ -612,3 +612,50 @@ from dolgozok;
 select nev, replace(concat("(",telefon), ' ', ') ' )
 from dolgozok;
 
+
+
+
+
+
+
+
+vegyuk azoknak a dolgozoknak az adatait, 
+akiknek a fizetesuk nagyobb mint 790 ezer.
+jeelnitsuk meg telepulesenkent a fizetesek osszeget.
+
+select telepules sum(fizetes)
+from Szemelyek
+where fizetes>790000
+group by telepules;
+
+
+
+
+
+
+vegyuk azoknak a dolgozoknak az adatait, 
+akiknek a fizetesuk nagyobb mint 790 ezer.
+jeelnitsuk meg telepulesenkent a fizetesek osszeget.
+
+select telepules sum(fizetes)
+from Szemelyek
+where fizetes>790000
+group by telepules
+having sum(fizetes) > 1000000; 
+
+
+
+
+beszuras
+
+insert into Szemelyek
+(nev, telepules, fizetes, beosztasAz)
+values
+("  Pali Richárd ", " Szeged       ", 2300000, 2);
+
+select nev, telepules from Szemelyek where telepules="Szeged";
+
+select nev, telepules from Szemelyek where trim(telepules)="Szeged";
+
+
+
