@@ -659,3 +659,106 @@ select nev, telepules from Szemelyek where trim(telepules)="Szeged";
 
 
 
+
+
+
+
+
+
+
+2022.05.11
+
+wor
+	employees(id, name, city, salary, rankId)
+	rank(id, name)
+	
+	
+	
+create database wor
+character set uft8
+collate utf8_hungarian_ci;
+
+use wor;
+
+grant all privileges
+on wor.*
+to wor@localhost
+identified by 'titok';
+
+create table employees(
+	id int not null primary key auto_increment,
+	name varchar(50),
+	city varchar(50),
+	salary double,
+	rankId int
+);
+
+create table ranks(
+	id int not null primary key auto_increment,
+	name varchar(50)
+);
+
+insert into ranks
+(name)
+values
+('takarító'),
+('karbantartó'),
+('programozó'),
+('rendszergazda');
+
+insert into employees
+(name, city, salary, rankId)
+values
+('Parlag Imre','Szeged','342', 1),
+('Lapos Lajos','Szolnok','343', 1),
+('Hegy Ferenc','Szeged','359', 2);
+
+insert into employees
+(name, city, salary, rankId)
+values
+('Pofa Félix','Szeged','542', 3);
+
+
+Melyik dolgozónak mi a beosztása. Jelenjen meg a dolgozó nevét és a beosztás.
+
+select employees.name, ranks.name
+from employees inner join ranks
+on employees.rankId = ranks.id;
+
+
+select employees.name, ranks.name
+from employees right join ranks
+on employees.rankId = ranks.id;
+
+
+select employees.name, ranks.name
+from employees right join ranks
+on employees.rankId = ranks.id;
+
+
+select employees.name, ranks.name
+from employees right join ranks
+on employees.rankId = ranks.id;
+
+create table emp(
+	id int not null primary key auto_increment,
+	name varchar(50) not null,
+	city varchar(50) not null,
+	salary double not null,
+	rankId int not null
+);
+
+
+create table em(
+	id int not null primary key auto_increment,
+	name varchar(50) not null,
+	city varchar(50) not null,
+	salary double default 300,
+	rankId int not null
+);
+
+insert into em
+(name, city, rankId)
+values
+('Pofa Félix','Szeged', 3);
+
